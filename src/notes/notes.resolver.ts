@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver, ID } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, ID, Int } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 
@@ -11,7 +11,9 @@ export class NotesResolver {
   constructor(@Inject('DB') private readonly db: DBClient) {}
 
   @Query(() => [Note])
-  async notes(): Promise<Note[]> {
+  async notes(
+    @Args('page', { type: () => Int, nullable: false }) page: number,
+  ): Promise<Note[]> {
     const notes = await this.db.query.notes.findMany();
     return notes.map((note) => ({
       ...note,

@@ -9,7 +9,7 @@ type Note {
 }
 
 type Query {
-  notes: [Note!]!
+  notes(page: Int!): [Note!]!
 }
 
 type Mutation {
