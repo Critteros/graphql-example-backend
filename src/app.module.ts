@@ -5,15 +5,15 @@ import { DrizzleTursoModule } from '@knaadh/nestjs-drizzle-turso';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { NotesModule } from './notes/notes.module';
 import * as schema from './db/schema';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<MercuriusDriverConfig>({
-    //   driver: MercuriusDriver,
-    //   graphiql: true,
-    // }),
-
+    GraphQLModule.forRoot<MercuriusDriverConfig>({
+      driver: MercuriusDriver,
+      graphiql: true,
+    }),
     DrizzleTursoModule.register({
       tag: 'DB',
       turso: {
@@ -25,6 +25,7 @@ import * as schema from './db/schema';
         schema,
       },
     }),
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
