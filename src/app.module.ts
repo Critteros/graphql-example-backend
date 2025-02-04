@@ -1,3 +1,6 @@
+import { join } from 'node:path';
+import { cwd } from 'node:process';
+
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
@@ -13,6 +16,7 @@ import * as schema from './db/schema';
     GraphQLModule.forRoot<MercuriusDriverConfig>({
       driver: MercuriusDriver,
       graphiql: true,
+      autoSchemaFile: join(cwd(), 'schema.gql'),
     }),
     DrizzleTursoModule.register({
       tag: 'DB',

@@ -1,6 +1,7 @@
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const notes = sqliteTable('notes', {
-  title: text(),
-  description: text(),
+  uid: text().$defaultFn(() => crypto.randomUUID()).primaryKey(),
+  title: text().notNull(),
+  description: text().notNull(),
 });

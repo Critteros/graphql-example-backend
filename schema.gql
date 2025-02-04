@@ -1,0 +1,17 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Note {
+  id: ID!
+  title: String!
+  description: String!
+}
+
+type Query {
+  notes: [Note!]!
+}
+
+type Mutation {
+  createNote(title: String!, description: String!): Note!
+}

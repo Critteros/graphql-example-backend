@@ -1,24 +1,31 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "beb6647c-2fff-4d9d-9915-b548068de7ec",
+  "id": "d20ebb54-8b41-4c11-a076-9e9e94f8dd0a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "notes": {
       "name": "notes",
       "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
         "title": {
           "name": "title",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
