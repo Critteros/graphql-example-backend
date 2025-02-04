@@ -29,6 +29,11 @@ async function bootstrap() {
   await migrate(db, {
     migrationsFolder: expectedMigrationsDir,
   });
+  await app.enableCors({
+    origin: '*',
+    methods: 'GET, PUT, POST, DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
   await app.listen(process.env.PORT ?? 8080);
 }
 void bootstrap();

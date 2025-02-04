@@ -9,5 +9,5 @@ export class Note {
   title: string;
 
   @Field()
-  description: string;
+  contents: string;
 }

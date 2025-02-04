@@ -5,7 +5,7 @@
 type Note {
   id: ID!
   title: String!
-  description: String!
+  contents: String!
 }
 
 type Query {
@@ -13,5 +13,5 @@ type Query {
 }
 
 type Mutation {
-  createNote(title: String!, description: String!): Note!
+  createNote(title: String!, contents: String!): Note!
 }

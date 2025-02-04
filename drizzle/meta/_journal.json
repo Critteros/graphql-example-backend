@@ -8,6 +8,13 @@
       "when": 1738670276348,
       "tag": "0000_NotesTable",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1738679979329,
+      "tag": "0001_rename_note_description_to_contents",
+      "breakpoints": true
     }
   ]
 }

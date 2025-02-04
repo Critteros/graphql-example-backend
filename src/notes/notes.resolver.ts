@@ -10,7 +10,7 @@ export class NotesResolver {
   constructor(@Inject('DB') private readonly db: DBClient) {}
 
   @Query(() => [Note])
-  async notes() {
+  async notes(): Promise<Note[]> {
     const notes = await this.db.query.notes.findMany();
     return notes.map((note) => ({
       ...note,
@@ -21,12 +21,16 @@ export class NotesResolver {
   @Mutation(() => Note)
   async createNote(
     @Args('title') title: string,
-    @Args('description') description: string,
-  ) {
-    return this.db.insert(notes).values({ title, description }).returning({
-      title: notes.title,
-      description: notes.description,
-      id: notes.uid,
-    });
+    @Args('contents') contents: string,
+  ): Promise<Note> {
+    return this.db
+      .insert(notes)
+      .values({ title, contents })
+      .returning({
+        title: notes.title,
+        contents: notes.contents,
+        id: notes.uid,
+      })
+      .get();
   }
 }
