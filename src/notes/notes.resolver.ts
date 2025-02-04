@@ -1,5 +1,6 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, ID } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
 
 import { type DBClient, notes } from '@/db';
 
@@ -32,5 +33,18 @@ export class NotesResolver {
         id: notes.uid,
       })
       .get();
+  }
+
+  @Mutation(() => Boolean)
+  async deleteNote(
+    @Args('id', { type: () => ID }) id: string,
+  ): Promise<boolean> {
+    try {
+      await this.db.delete(notes).where(eq(notes.uid, id)).execute();
+    } catch (error) {
+      console.error('Failed to delete note:', error);
+      return false;
+    }
+    return true;
   }
 }
